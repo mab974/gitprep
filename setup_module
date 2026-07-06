@@ -16,8 +16,8 @@ if ! (call_perl -MModule::CoreList -e 1 2>/dev/null)
 then	call_perl cpanm -n -l extlib Module::CoreList
 fi
 
-# Fetch other modules insirectly needed by cpanm.
-for module in ExtUtils::MakeMaker LWP::Protocol::https
+# Fetch other modules indirectly needed by cpanm.
+for module in LWP::Protocol::https ExtUtils::MakeMaker
 do	if ! (call_perl -M${module} -e 1 2>/dev/null)
 	then	call_perl cpanm -f -L extlib ${module}
 	fi
