@@ -1195,6 +1195,26 @@ sub last_change_commits {
   return \%commits;
 }
 
+sub commits_by_email {
+  my ($self, $rep_info, $rev, $email, $count) = @_;
+
+  my @cmd = $self->cmd(
+    $rep_info,
+    '--no-pager',
+    'log',
+    '--author=<' . quotemeta($email) . '>$',
+    '--pretty=format:%H',
+    $count? "-$count": (),
+    $rev
+  );
+  open my $fh, '-|', @cmd
+    or croak 'Open git-log failed';
+
+  my @commits = <$fh>;
+  close $fh;
+  return \@commits;
+}
+
 sub parse_diff_chunk_header {
   my ($self, $hdr) = @_;
 

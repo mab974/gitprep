@@ -647,6 +647,12 @@ ul.issues-label-pallet {
   color:#767676;
 }
 
+.issues-quality {
+  padding: 4px;
+  border:1px solid #d0d0d0;
+  border-radius:8px;
+}
+
 .issue-labels-popup {
   border:1px solid #e6e9e6;
   border-radius:3px;
